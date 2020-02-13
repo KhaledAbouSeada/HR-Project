@@ -10,13 +10,17 @@ import Foundation
 
 class Network {
     
+    
+    
     enum endPoints {
-        static let baseUrl = "http://192.168.1.172:5000/api/"
+        static let baseUrl = "http://192.168.1.172:5001/api/"
         case login
         case registration
         case requests
         case checkIn
         case checkOut
+        case approved(employee_id:Int , status:String , description:String , from:String , to:String , type:String , reply:String , id:Int)
+        
         
         var stringvalue : String {
             
@@ -26,6 +30,8 @@ class Network {
             case .requests:return ("\(Network.endPoints.baseUrl)requests")
             case .checkIn:return ("\(Network.endPoints.baseUrl)checkIn")
             case .checkOut:return ("\(Network.endPoints.baseUrl)checkOut")
+            case .approved(let employee_id, let status, let description, let from, let to,  let type , let reply , let id):
+                return "\(Network.endPoints.baseUrl)requests/\(employee_id)"
             }
         }
         var url : URL {

@@ -20,6 +20,17 @@ class Button: UIButton{
         self.layer.shadowOffset=CGSize(width: 0, height: 0)
     }
 }
+class ButtonSend: UIButton{
+    func botton1(){
+        self.backgroundColor=UIColor.lightGray
+        self.layer.cornerRadius=self.frame.height/2
+        self.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        self.layer.shadowColor=UIColor.white.cgColor
+        self.layer.shadowRadius=4
+        self.layer.shadowOpacity=0.5
+        self.layer.shadowOffset=CGSize(width: 0, height: 0)
+    }
+}
 class TextFields : UITextField{
     func textfields(){
         self.layer.cornerRadius=self.frame.height/2

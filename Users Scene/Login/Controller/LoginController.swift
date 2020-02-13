@@ -21,6 +21,15 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let navigationBar = navigationController!.navigationBar
+        navigationBar.shadowImage = UIImage()
+////        navigationBar.barTintColor = UIColor.lightGray
+////        navigationBar.isTranslucent = false
+////        navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: ""), for: UIBarMetrics.default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage(named: "")
+        
         RegistrationEmployeeBTN.botton()
         LoginButtonOutlet.botton()
         emailTF.textfields()

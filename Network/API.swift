@@ -68,12 +68,13 @@ class API: NSObject {
     
     class func RegistraionEmployee (firstname:String , lastname:String , arabicname:String , email:String , phonenumber:String , maritalstatus:String , gender:String ,employeetype:String ,  hiringdate:String , departmentid:Int , cityid:Int , countryid:Int , salary:Int , completion: @escaping (_ error:Error? , _ success:Bool)->Void){
         
-        let parameters: [String: Any] = ["first_name": firstname , "last_name": lastname , "arabic_name": arabicname , "email": email , "phone": phonenumber , "marital_status": maritalstatus , "gender": gender , "employee_type": employeetype , "hiring_date": hiringdate , "department_id": departmentid , "city_id": cityid , "country_id": countryid , "salary": salary]
+        let parameters: [String: Any] = ["first_name": firstname , "last_name": lastname , "arabic_name": arabicname , "email": email , "phone": phonenumber , "marital_status": maritalstatus , "gender": gender , "employee_type": employeetype , "hiring_date": hiringdate , "department_id": departmentid , "city_id": cityid , "country_id": countryid , "salary": salary ]
         print(parameters)
         print(Network.endPoints.registration.url)
-        Alamofire.request(Network.endPoints.registration.url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: ["Content-Type": "application/json", "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMzMTYzNTUzZGFhZTUxMGUyYWZlMzIwOGY2MDk4Yjc1Y2UxNjhmYzBhNGZiNTVkMDBkMzFhNDc0Y2UzM2FhZjQzOTBmNmViMmNjYjRkOGI4In0.eyJhdWQiOiIxIiwianRpIjoiMzMxNjM1NTNkYWFlNTEwZTJhZmUzMjA4ZjYwOThiNzVjZTE2OGZjMGE0ZmI1NWQwMGQzMWE0NzRjZTMzYWFmNDM5MGY2ZWIyY2NiNGQ4YjgiLCJpYXQiOjE1ODAzNzYzMjgsIm5iZiI6MTU4MDM3NjMyOCwiZXhwIjoxNjExOTk4NzI4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.L_XFwjXNET6nU8Pt1W-UC4PxMYboDUqd_CUqCHqFVdpx6db8zZijQZOyI16cAFxe2zuSXiG-vG0gBO6d1jHeLZ0nD0nAPzlJqchaGS3B33bJKt2ZmtRXdRGd4oeLKMtOEKRu587N6-ujLBHpO8kUaWK7Uai6W1ojpjqCCRnT3trAWU0CRo4dtrzTy3QWjt9Pv_XPyTIPzgIvSUSD7imR67EY2fLbaMUAtl77oG8bDxHOSxCMZ2gMwXy2kLVH8Nn-MwdSgJrhaNCuWtV37gv8tMtXJoUgavr7RB6i9y_6Qfx00ZGOABYo4fdLdX-9DiOL0hEZkVwXqX7aWk6RhuO5NqGwM5ajVZ8tYjH2pdfzUSFPJgSBrOs0igqOIC9WjLJ6fGgTwxlSNj0Nw-CDIcBH2jpVNQZBQnvu8KgKapRMiOM0DvgZA0nQWT_0kxubM9qsGRRcpOuRzqEuNOJ-9ViO45OfCGr1-txA-zarWsZmfcka1cdyeUDKuU4XNDr1F-fRu86n6ZLYopQrpC9eMykRFH6sGmVxBufw-x4XUpwEL2h5OKQ_r7b98oBFf9MsJExlIL1seBI76wT_9O7II4UPBU9UIpd5i3OBzNK0cRO7UALQOgUUDI9YeGWuEdVXWY89Dn519pgzt3hRhYC38oPl4AYLM6AJxgVaFJrMrPv3wHk"])
+        Alamofire.request(Network.endPoints.registration.url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: ["Content-Type":"application/x-www-form-urlencoded", "Authorization":"Bearer \(Helper.getApiToken() ?? "")"])
             .validate(statusCode: 200...600)
             .responseJSON { response in
+                
                 switch response.result{
                 case .failure(let error):
                     print(error)
@@ -102,20 +103,89 @@ class API: NSObject {
         
     }
     
-    //    class func requestCheckIn(date: String , completion: @escaping (_ error:Error? ,_ success:Bool?)->Void){
-    //
-    //        let params = ["date": date]
-    //        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
-    //
-    //        Alamofire.request(Network.endPoints.checkIn.url, method: .post, parameters: params, encoding: URLEncoding.default, headers: headers)
-    //            .responseJSON { response in
-    //                switch response.result{
-    //                case .failure(let error):
-    //                    print(error)
-    //                case .success(let value):
-    //                    guard let data = response.data else {return}
-    //                    let decoder = JSONDecoder()
-    //                }
-    //        }
-    //    }
+    class func Requestrequests(completion: @escaping (_ error:Error? , _ success:Bool , _ Dataa:[Requests]?)->Void){
+        
+        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
+        
+        Alamofire.request(Network.endPoints.requests.url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
+        
+            .responseJSON { response in
+                switch response.result{
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    print("Cant Get The Requests")
+                case .success(let value):
+                    print(value)
+                    guard let data = response.data else {return}
+                    let decoder = JSONDecoder()
+                    do{
+                        let requests = try decoder.decode(RequestsModel.self, from: data)
+                        completion(nil, true, requests.data?.requests)
+                    }catch let error{
+                        print(error)
+                    }
+                }
+        }
+    }
+    class func ApprovedRequests(employee_id:Int,status:String,description:String,from:String,to:String,type:String ,reply:String ,id:Int, completion: @escaping (_ error:Error? , _ success:Bool)->Void){
+        
+        let parameters: [String: Any] = ["employee_id": employee_id, "status": status, "description": description, "from": from, "to": to, "type": type, "reply": reply, "id": id]
+        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
+        
+//        print(Network.endPoints.approved(employee_id: employee_id, status: "Approved", description: description, from: from, to: to, type: type, reply: reply, id: id).url)
+        
+        Alamofire.request(Network.endPoints.approved(employee_id: employee_id, status: status, description: description, from: from, to: to, type: type, reply: reply, id: id).url , method: .put, parameters:parameters , encoding: URLEncoding.default, headers: headers)
+        
+            .responseJSON{ response in
+                switch response.result{
+                    
+                case .success(let value):
+                    print(value)
+                    completion(nil,true)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(error, false)
+                }
+        }
+    }
+    
+    class func requestCheckIn(date: String , completion: @escaping (_ error:Error? ,_ success:Bool?)->Void){
+        
+        let params = ["date": date]
+        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
+        
+        Alamofire.request(Network.endPoints.checkIn.url, method: .post, parameters: params, encoding: URLEncoding.default, headers: headers)
+            .responseJSON { response in
+                switch response.result{
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(error,false)
+                case .success(let value):
+                    print(value)
+                    completion(nil,true)
+                }
+        }
+    }
+    
+    class func requestCheckOut(date: String , completion: @escaping (_ error:Error? ,_ success:Bool?)->Void){
+        
+        let params = ["date": date]
+        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
+        
+        Alamofire.request(Network.endPoints.checkOut.url, method: .post, parameters: params, encoding: URLEncoding.default, headers: headers)
+            .responseJSON { response in
+                switch response.result{
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    completion(error,false)
+                case .success(let value):
+                    print(value)
+                    completion(nil,true)
+                }
+        }
+    }
+
 }
+    
+
+

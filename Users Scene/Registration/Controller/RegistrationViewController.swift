@@ -24,6 +24,7 @@ class RegistrationViewController: UIViewController,UIPickerViewDataSource,UIPick
     @IBOutlet weak var CountryIDTXT: UITextField!
     @IBOutlet weak var SalaryTXT: UITextField!
     @IBOutlet weak var EmployeeTypeTXT: UITextField!
+    @IBOutlet weak var UserIDTXT: UITextField!
     
     let gender = ["Male","Female"]
     let maritalStatus = ["Single", "Married", "Widowed", "Divorced", "Separated"]
@@ -114,6 +115,18 @@ class RegistrationViewController: UIViewController,UIPickerViewDataSource,UIPick
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert , animated: true)
     }
+    func Alertaction (message:String){
+        
+        let alertOnSuccess = UIAlertController(title: "Done", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
+            self.navigationController?.popViewController(animated: true)
+            guard let profile = self.navigationController?.viewControllers[0] as? LoginController else { return }
+//            self.navigationController?.popToViewController(, animated: true)
+            self.navigationController?.popToViewController(profile, animated: true)
+        }
+        alertOnSuccess.addAction(okAction)
+        self.present(alertOnSuccess , animated: true)
+    }
     func Validation(){
         
         let firstName = FirstNameTXT.text
@@ -129,6 +142,7 @@ class RegistrationViewController: UIViewController,UIPickerViewDataSource,UIPick
         let country = CountryIDTXT.text
         let salary = SalaryTXT.text
         let employee = EmployeeTypeTXT.text
+//        let user = UserIDTXT.text
         
         if firstName?.isEmpty == true{
             self.Alert(message: "Enter Your First Name")
@@ -156,11 +170,16 @@ class RegistrationViewController: UIViewController,UIPickerViewDataSource,UIPick
             self.Alert(message: "Enter Your Salary")
         }else if employee?.isEmpty == true{
             self.Alert(message: "Enter The Employee Type")
-        }else{
+        }
+//        else if user?.isEmpty == true{
+//            self.Alert(message: "Enter The User ID")
+//        }
+        else{
             let department = Int(DepartmentIDTXT.text!)!
             let city = Int(CityIDTXT.text!)!
             let country = Int(CountryIDTXT.text!)!
             let salary = Int(SalaryTXT.text!)!
+//            let User_Id = Int(UserIDTXT.text!)!
             
             API.RegistraionEmployee(firstname: "\(FirstNameTXT.text ?? "")", lastname: "\(LastNameTXT.text ?? "")", arabicname: "\(ArabicNameTXT.text ?? "")", email: "\(EmailTXT.text ?? "")", phonenumber: "\(PhoneTXT.text ?? "")", maritalstatus: "\(MaritalTXT.text ?? "")", gender: "\(GenderTXT.text ?? "")", employeetype: "\(EmployeeTypeTXT.text ?? "")", hiringdate: "\(HiringDateTXT.text ?? "")", departmentid: department, cityid: city, countryid: country, salary: salary) { (error:Error?, success:Bool) in
                 
@@ -168,8 +187,7 @@ class RegistrationViewController: UIViewController,UIPickerViewDataSource,UIPick
                     self.Alert(message: error.localizedDescription)
                 }
                 if success == true{
-                    self.Alert(message: "Employee Registered Successfully")
-//                    self.performSegue(withIdentifier: "Backtologin", sender: self)
+                    self.Alertaction(message: "Employee Registered Successfully")
                 }
 //                self.performSegue(withIdentifier: "Backtologin", sender: self)
 //                let storyboard = UIStoryboard(name: "RegisterSB", bundle: nil)

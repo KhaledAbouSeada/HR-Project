@@ -15,7 +15,7 @@ class View2Controller: UIViewController,UIPickerViewDelegate,UIPickerViewDataSou
     @IBOutlet weak var DescriptionTV: TextView!
     @IBOutlet weak var fromDateTF: UITextField!
     @IBOutlet weak var toDateTF: UITextField!
-    @IBOutlet weak var SendRequestBTN: Button!
+    @IBOutlet weak var SendRequestBTN: ButtonSend!
     
     let datePickFromDate = UIDatePicker()
     let datePickToDate = UIDatePicker()
@@ -28,7 +28,7 @@ class View2Controller: UIViewController,UIPickerViewDelegate,UIPickerViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SendRequestBTN.botton()
+        SendRequestBTN.botton1()
         DescriptionTV.textview()
         RequestTF.textfields()
         DescriptionTV.delegate = self
@@ -53,6 +53,39 @@ class View2Controller: UIViewController,UIPickerViewDelegate,UIPickerViewDataSou
 //        datepick.addTarget(self, action: #selector(doneButtonClickedToDate), for: .valueChanged)
         
     }
+    
+    @IBAction func SendRequest(_ sender: Any) {
+        
+        Validation()
+    }
+    func Validation(){
+        let DescriptionText = DescriptionTV.text
+        let RequestText = RequestTF.text
+        let From = fromDateTF.text
+        let to = toDateTF.text
+        
+        if RequestText?.isEmpty==true{
+            self.Alert(title: "Oops!", message: "Choose Your Request")
+        }else if DescriptionText=="Description"{
+            self.Alert(title: "Oops!", message: "Enter Your Description")
+        }else if From?.isEmpty==true{
+            self.Alert(title: "Oops!", message: "Enter From Date")
+        }else if to?.isEmpty==true{
+            self.Alert(title: "Oops!", message: "Enter to Date")
+        }else{
+           print("Done")
+        }
+        
+    }
+    
+    
+    func Alert (title:String , message:String){
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert , animated: true)
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if let text = DescriptionTV.text{
             DescriptionTV.text = text
@@ -89,9 +122,7 @@ class View2Controller: UIViewController,UIPickerViewDelegate,UIPickerViewDataSou
         RequestTF.text = requestInputs[row]
     }
     
-    @IBAction func SendRequest(_ sender: Any) {
-        
-    }
+    
     
     
 //     func navigationBarButton(){
