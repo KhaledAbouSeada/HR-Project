@@ -1,12 +1,12 @@
 PODS:
-  - Alamofire (4.9.0)
+  - Alamofire (5.0.2)
   - IQKeyboardManager (6.5.5)
   - MBRadioButton (1.4)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (~> 5.0.0-rc.3)
   - IQKeyboardManager
   - MBRadioButton
   - SVProgressHUD
@@ -21,12 +21,12 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  Alamofire: 3ba7a4db18b4f62c4a1c0e1cb39d7f3d52e10ada
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
   MBRadioButton: dcf111c9bb633d4cf6e83200d804af6e025033c8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 802f8b92d1e24786b2dee1d6e34b98fbcb54a0d8
+PODFILE CHECKSUM: 6ed02b8c3e59e2b4bbdcf259c0797fa9601a2f24
 
-COCOAPODS: 1.8.0
+COCOAPODS: 1.9.0.beta.3

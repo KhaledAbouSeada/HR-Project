@@ -20,7 +20,7 @@ class API: NSObject {
         //        let loginUrl = "http://192.168.1.172:5000/api/login"
         let parameters = ["email": email, "password": password]
         
-        Alamofire.request(Network.endPoints.login.url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
+        AF.request(Network.endPoints.login.url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: nil)
             
             .validate(statusCode: 200...450)
             .responseJSON { response in
@@ -71,7 +71,7 @@ class API: NSObject {
         let parameters: [String: Any] = ["first_name": firstname , "last_name": lastname , "arabic_name": arabicname , "email": email , "phone": phonenumber , "marital_status": maritalstatus , "gender": gender , "employee_type": employeetype , "hiring_date": hiringdate , "department_id": departmentid , "city_id": cityid , "country_id": countryid , "salary": salary ]
         print(parameters)
         print(Network.endPoints.registration.url)
-        Alamofire.request(Network.endPoints.registration.url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: ["Content-Type":"application/x-www-form-urlencoded", "Authorization":"Bearer \(Helper.getApiToken() ?? "")"])
+        AF.request(Network.endPoints.registration.url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: ["Content-Type":"application/x-www-form-urlencoded", "Authorization":"Bearer \(Helper.getApiToken() ?? "")"])
             .validate(statusCode: 200...600)
             .responseJSON { response in
                 
@@ -107,7 +107,7 @@ class API: NSObject {
         
         let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
         
-        Alamofire.request(Network.endPoints.requests.url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: headers)
+        AF.request(Network.endPoints.requests.url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil)
         
             .responseJSON { response in
                 switch response.result{
@@ -134,7 +134,7 @@ class API: NSObject {
         
 //        print(Network.endPoints.approved(employee_id: employee_id, status: "Approved", description: description, from: from, to: to, type: type, reply: reply, id: id).url)
         
-        Alamofire.request(Network.endPoints.approved(employee_id: employee_id, status: status, description: description, from: from, to: to, type: type, reply: reply, id: id).url , method: .put, parameters:parameters , encoding: URLEncoding.default, headers: headers)
+        AF.request(Network.endPoints.approved(employee_id: employee_id, status: status, description: description, from: from, to: to, type: type, reply: reply, id: id).url , method: .put, parameters:parameters , encoding: URLEncoding.default, headers: nil)
         
             .responseJSON{ response in
                 switch response.result{
@@ -154,7 +154,7 @@ class API: NSObject {
         let params = ["date": date]
         let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
         
-        Alamofire.request(Network.endPoints.checkIn.url, method: .post, parameters: params, encoding: URLEncoding.default, headers: headers)
+        AF.request(Network.endPoints.checkIn.url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil)
             .responseJSON { response in
                 switch response.result{
                 case .failure(let error):
@@ -172,7 +172,7 @@ class API: NSObject {
         let params = ["date": date]
         let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
         
-        Alamofire.request(Network.endPoints.checkOut.url, method: .post, parameters: params, encoding: URLEncoding.default, headers: headers)
+        AF.request(Network.endPoints.checkOut.url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil)
             .responseJSON { response in
                 switch response.result{
                 case .failure(let error):

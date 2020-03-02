@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import Alamofire
 
 class LoginController: UIViewController {
 
@@ -44,25 +45,86 @@ class LoginController: UIViewController {
         guard let email = emailTF.text , !email.isEmpty else {return}
         guard let password = passwordTF.text , !password.isEmpty else {return}
         
-        API.login(email:email, password:password) { (error:Error? ,success:Bool?, errormessage:String? , passwordmessage:String?) in
-            
-            if let error = error {
-                self.Alert(message: error.localizedDescription)
-                return
-            }
-            
-            if success == true{
-                if let errormessage = errormessage{
-                    self.Alert(message: errormessage)
-                    return
+        APIClient.login(email: email, password: password) { (result: Result<loginModel, AFError>) in
+            switch result {
+            case .success(let loginData):
+                do{
+                    if let errorCode = loginData.code {
+                        if errorCode == 5000 {
+                            if let mailerror = loginData.errors?.email?[0] {
+                                self.Alert(message: mailerror)
+                                return
+                            }
+                        }
+                        if errorCode == 5000 {
+                            if let passworderror = loginData.errors?.password?[0] {
+                                self.Alert(message: passworderror)
+                                return
+                            }
+                        }
+                        if errorCode == 401 {
+                            if let unavailable = loginData.message {
+                                self.Alert(message: unavailable)
+                                return
+                            }
+                        }
+                        if errorCode == 200 {
+                            if let api_token = loginData.api_token{
+                                
+                                Helper.saveAccessToken(token: api_token)
+                                print("(APIIIIIIIIIIII\(api_token)")
+                            }
+                        }
+                    }
+
+                } catch let error{
+                    print(error)
                 }
-                if let passwordmessage = passwordmessage{
-                    self.Alert(message: passwordmessage)
-                    return
-                }
-                print("it woooorked")
+                print(loginData)
+            case .failure(let error):
+                print(error)
             }
         }
+        
+//        APIClient.login(email: email, password: password) { Result in
+//
+////            switch Result {
+////            case .success(_):
+////                do{
+////                if let errorCode = loginModel. {
+////                    if errorCode == 5000 {
+////                        if let mailerror = loginModel.CodingKeys.errors.email?[0] {
+////                            return
+////                        }
+////                    }
+////                    }catch{
+////
+////                    }
+////            case .failure(_):
+////                <#code#>
+////            }
+////        }
+//
+////        API.login(email:email, password:password) { (error:Error? ,success:Bool?, errormessage:String? , passwordmessage:String?) in
+////
+////            if let error = error {
+////                self.Alert(message: error.localizedDescription)
+////                return
+////            }
+////
+////            if success == true{
+////                if let errormessage = errormessage{
+////                    self.Alert(message: errormessage)
+////                    return
+////                }
+////                if let passwordmessage = passwordmessage{
+////                    self.Alert(message: passwordmessage)
+////                    return
+////                }
+////                print("it woooorked")
+////            }
+////        }
+//        }
     }
 
     

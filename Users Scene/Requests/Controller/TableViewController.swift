@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class TableViewController: UITableViewController {
     
@@ -40,28 +41,48 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CELL", for: indexPath) as! TableViewCell
         cell.configurcell(requests: array[indexPath.row], index: indexPath.row)
         cell.approveRequestStatus = { request in
-
-            API.ApprovedRequests(employee_id: request.employee_id ?? 0, status: "Approved", description: request.description ?? "", from: request.from ?? "", to: request.to ?? "", type: request.type ?? "", reply: request.reply ?? "", id: request.id ?? 0, completion: { (error, status) in
-                if let error = error{
-                    print(error)
-                    return
-                }
-                if status == true {
+            
+            APIClient.approvedrequests(employee_id: request.employee_id ?? 0, status: K.Constanst.approved, description: request.description ?? "", from: request.from ?? "", to: request.to ?? "", type: request.type ?? "", reply: request.reply ?? "", id: request.id ?? 0, completion: { (response: Result<RequestsModel, AFError>) in
+                switch response{
+                    
+                case .success(_):
                     self.Alert(message: "Approved")
+                case .failure(let error):
+                    print(error)
                 }
             })
+
+//            API.ApprovedRequests(employee_id: request.employee_id ?? 0, status: "Approved", description: request.description ?? "", from: request.from ?? "", to: request.to ?? "", type: request.type ?? "", reply: request.reply ?? "", id: request.id ?? 0, completion: { (error, status) in
+//                if let error = error{
+//                    print(error)
+//                    return
+//                }
+//                if status == true {
+//                    self.Alert(message: "Approved")
+//                }
+//            })
         }
         cell.declineRequestStatus = { request in
             
-            API.ApprovedRequests(employee_id: request.employee_id ?? 0, status: "Rejected", description: request.description ?? "", from: request.from ?? "", to: request.to ?? "", type: request.type ?? "", reply: request.reply ?? "", id: request.id ?? 0, completion: { (error, status) in
-                if let error = error{
-                    print(error)
-                    return
-                }
-                if status == true {
+            APIClient.approvedrequests(employee_id: request.employee_id ?? 0, status: K.Constanst.declined, description: request.description ?? "", from: request.from ?? "", to: request.to ?? "", type: request.type ?? "", reply: request.reply ?? "", id: request.id ?? 0, completion: { (response: Result<RequestsModel, AFError>) in
+                switch response{
+                    
+                case .success(_):
                     self.Alert(message: "Declined")
+                case .failure(let error):
+                    print(error)
                 }
             })
+            
+//            API.ApprovedRequests(employee_id: request.employee_id ?? 0, status: "Rejected", description: request.description ?? "", from: request.from ?? "", to: request.to ?? "", type: request.type ?? "", reply: request.reply ?? "", id: request.id ?? 0, completion: { (error, status) in
+//                if let error = error{
+//                    print(error)
+//                    return
+//                }
+//                if status == true {
+//                    self.Alert(message: "Declined")
+//                }
+//            })
         }
         cell.selectionStyle = .none
          return cell
@@ -73,17 +94,28 @@ class TableViewController: UITableViewController {
     
     func getrequests(){
         
-        API.Requestrequests { (error:Error?, success:Bool , dataaa:[Requests]?) in
-            
-            if let error = error{
+        APIClient.getrequests { (response: Result<RequestsModel, AFError>) in
+            switch response {
+                
+            case .success(let value):
+                self.array = (value.data?.requests!)!
+                self.tableView.reloadData()
+            case .failure(let error):
                 print(error)
             }
-            if success==true{
-                self.array = dataaa!
-                self.tableView.reloadData()
-                print("SUccessed")
-            }
         }
+        
+//        API.Requestrequests { (error:Error?, success:Bool , dataaa:[Requests]?) in
+//
+//            if let error = error{
+//                print(error)
+//            }
+//            if success==true{
+//                self.array = dataaa!
+//                self.tableView.reloadData()
+//                print("SUccessed")
+//            }
+//        }
     }
     func Alert (message:String){
         

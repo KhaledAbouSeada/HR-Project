@@ -8,6 +8,7 @@
 
 import UIKit
 import MBRadioButton
+import Alamofire
 
 class View1Controller: UIViewController, RadioButtonDelegate {
     func radioButtonDidSelect(_ button: RadioButton) {
@@ -63,25 +64,47 @@ class View1Controller: UIViewController, RadioButtonDelegate {
         }else if date?.isEmpty == false && time?.isEmpty == false && CheckinBTN.isOn == false && CheckoutBTN.isOn == false{
             self.Alert(title: "Oops!", message: "choose check in Or check out")
         }else if date?.isEmpty == false && time?.isEmpty == false && CheckinBTN.isOn == true && CheckoutBTN.isOn == false{
-            API.requestCheckIn(date: "\(date ?? "") \(time ?? "")") { (error, success) in
-                if let error = error{
+            
+            APIClient.Attendancein(date: date ?? "") { (response:Result<RequestsModel, AFError>) in
+                switch response{
+                    
+                case .success(_):
+                    self.Alert(title: "Done", message: "checked in")
+                case .failure(let error):
                     self.Alert(title: "Oops!", message: "\(error)")
-                    return
-                }
-                if success == true{
-                    self.Alert(title: "Done", message: "checked In")
                 }
             }
+            
+//            API.requestCheckIn(date: "\(date ?? "") \(time ?? "")") { (error, success) in
+//                if let error = error{
+//                    self.Alert(title: "Oops!", message: "\(error)")
+//                    return
+//                }
+//                if success == true{
+//                    self.Alert(title: "Done", message: "checked In")
+//                }
+//            }
         }else if date?.isEmpty == false && time?.isEmpty == false && CheckinBTN.isOn == false && CheckoutBTN.isOn == true{
-            API.requestCheckOut(date: "\(date ?? "") \(time ?? "")") { (error, success) in
-                if let error = error{
-                    self.Alert(title: "Oops!", message: "\(error)")
-                    return
-                }
-                if success == true{
+            
+            APIClient.Attendanceout(date: date ?? "") { (response:Result<RequestsModel, AFError>) in
+                switch response{
+                    
+                case .success(_):
                     self.Alert(title: "Done", message: "checked Out")
+                case .failure(let error):
+                    self.Alert(title: "Oops!", message: "\(error)")
                 }
             }
+            
+//            API.requestCheckOut(date: "\(date ?? "") \(time ?? "")") { (error, success) in
+//                if let error = error{
+//                    self.Alert(title: "Oops!", message: "\(error)")
+//                    return
+//                }
+//                if success == true{
+//                    self.Alert(title: "Done", message: "checked Out")
+//                }
+//            }
         }
     }
     
@@ -97,13 +120,14 @@ class View1Controller: UIViewController, RadioButtonDelegate {
 //        checkContainer.selectedButtons = [CheckoutBTN]
         checkContainer.delegate = self
         
-//        if CheckinBTN.isEnabled == true{
-//            CheckoutBTN.isEnabled = false
-//        }else if CheckoutBTN.isEnabled == true{
-//            CheckinBTN.isEnabled = false
-//        }else{
-//            return
-//        }
+        if CheckinBTN.isOn == true{
+            CheckoutBTN.isOn = false
+        }else if CheckoutBTN.isOn == true{
+            CheckinBTN.isOn = false
+        }else{
+            CheckinBTN.isOn=false
+            CheckoutBTN.isOn=false
+        }
     }
 
     @objc func createDatePicker ()->UIToolbar{

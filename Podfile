@@ -6,10 +6,10 @@ target 'HR Project' do
   use_frameworks!
 
   # Pods for HR Project
-    pod 'Alamofire'
-    pod 'SwiftyJSON'
     pod 'SVProgressHUD'
     pod 'MBRadioButton'
     pod 'IQKeyboardManager'
+    pod 'SwiftyJSON'
+    pod 'Alamofire', '~> 5.0.0-rc.3'
 
 end

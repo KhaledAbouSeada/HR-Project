@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041E5A3623F9672E00335C72 /* LoginEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041E5A3523F9672D00335C72 /* LoginEndpoint.swift */; };
+		043466EF23FA9B60005861EC /* ApprovedEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043466EE23FA9B5F005861EC /* ApprovedEndpoints.swift */; };
+		043466F123FAA079005861EC /* CheckInOutEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043466F023FAA079005861EC /* CheckInOutEndpoints.swift */; };
+		044D2F2C23FA8E0400C2128B /* RequestsEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044D2F2B23FA8E0400C2128B /* RequestsEndpoints.swift */; };
 		0466791023F02A1E00C4626D /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466790C23F02A1D00C4626D /* Requests.swift */; };
 		0466791123F02A1E00C4626D /* RequestsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466790D23F02A1E00C4626D /* RequestsModel.swift */; };
 		0466791223F02A1E00C4626D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466790E23F02A1E00C4626D /* Data.swift */; };
 		0466791323F02A1E00C4626D /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466790F23F02A1E00C4626D /* Employee.swift */; };
+		047A18C423F96AA500B68A68 /* RegestirationEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A18C323F96AA500B68A68 /* RegestirationEndpoint.swift */; };
 		048D575723E065990026F4B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D575623E065990026F4B0 /* AppDelegate.swift */; };
 		048D575923E065990026F4B0 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D575823E065990026F4B0 /* LoginController.swift */; };
 		048D575F23E065990026F4B0 /* HR_Project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 048D575D23E065990026F4B0 /* HR_Project.xcdatamodeld */; };
@@ -19,6 +24,10 @@
 		048D577423E06D590026F4B0 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D577323E06D590026F4B0 /* API.swift */; };
 		048D577723E0753F0026F4B0 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D577623E0753F0026F4B0 /* Helper.swift */; };
 		04E262F023E9691200C303BB /* Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E262EF23E9691200C303BB /* Design.swift */; };
+		04E2879423F93B3B0033CF4B /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2879323F93B3B0033CF4B /* Endpoints.swift */; };
+		04E2879623F93F560033CF4B /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2879523F93F560033CF4B /* NetworkConstants.swift */; };
+		04E2879823F94A590033CF4B /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2879723F94A590033CF4B /* APIConfiguration.swift */; };
+		04E2879A23F94F420033CF4B /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2879923F94F420033CF4B /* APIClient.swift */; };
 		04E2A71323E17AE7001466F4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2A71223E17AE7001466F4 /* Network.swift */; };
 		04E2A71623E1AFC8001466F4 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2A71423E1AFC7001466F4 /* Errors.swift */; };
 		04E2A71923E1B049001466F4 /* loginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2A71823E1B049001466F4 /* loginModel.swift */; };
@@ -34,10 +43,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041E5A3523F9672D00335C72 /* LoginEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndpoint.swift; sourceTree = "<group>"; };
+		043466EE23FA9B5F005861EC /* ApprovedEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedEndpoints.swift; sourceTree = "<group>"; };
+		043466F023FAA079005861EC /* CheckInOutEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInOutEndpoints.swift; sourceTree = "<group>"; };
+		044D2F2B23FA8E0400C2128B /* RequestsEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsEndpoints.swift; sourceTree = "<group>"; };
 		0466790C23F02A1D00C4626D /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		0466790D23F02A1E00C4626D /* RequestsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsModel.swift; sourceTree = "<group>"; };
 		0466790E23F02A1E00C4626D /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		0466790F23F02A1E00C4626D /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		047A18C323F96AA500B68A68 /* RegestirationEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegestirationEndpoint.swift; sourceTree = "<group>"; };
 		048D575323E065990026F4B0 /* HR Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HR Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		048D575623E065990026F4B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		048D575823E065990026F4B0 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -49,6 +63,10 @@
 		048D577323E06D590026F4B0 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		048D577623E0753F0026F4B0 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		04E262EF23E9691200C303BB /* Design.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Design.swift; path = "../Users Scene/Making Requests/Model/Design.swift"; sourceTree = "<group>"; };
+		04E2879323F93B3B0033CF4B /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		04E2879523F93F560033CF4B /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		04E2879723F94A590033CF4B /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		04E2879923F94F420033CF4B /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		04E2A71223E17AE7001466F4 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		04E2A71423E1AFC7001466F4 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		04E2A71823E1B049001466F4 /* loginModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = loginModel.swift; path = ../../../../../Downloads/codegen_5e3177d24a9e3/loginModel.swift; sourceTree = "<group>"; };
@@ -79,11 +97,11 @@
 		048D574A23E065990026F4B0 = {
 			isa = PBXGroup;
 			children = (
+				04E2879223F93B190033CF4B /* NetworkLayer */,
 				048D577223E066580026F4B0 /* StoryBoards */,
 				048D577523E075120026F4B0 /* Extentions */,
 				04E2A71C23E1C527001466F4 /* Network */,
 				048D576B23E065AD0026F4B0 /* Users Scene */,
-				048D575523E065990026F4B0 /* HR Project */,
 				048D575423E065990026F4B0 /* Products */,
 				8D6FE5F227CE10F3FD961942 /* Pods */,
 				2B8707F8FBC37670EBE9B4F3 /* Frameworks */,
@@ -97,13 +115,6 @@
 				048D575323E065990026F4B0 /* HR Project.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		048D575523E065990026F4B0 /* HR Project */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "HR Project";
 			sourceTree = "<group>";
 		};
 		048D576B23E065AD0026F4B0 /* Users Scene */ = {
@@ -130,6 +141,7 @@
 		048D576D23E065DA0026F4B0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				041E5A3523F9672D00335C72 /* LoginEndpoint.swift */,
 				04E2A71423E1AFC7001466F4 /* Errors.swift */,
 				04E2A71823E1B049001466F4 /* loginModel.swift */,
 			);
@@ -183,8 +195,20 @@
 		04E262EE23E968F300C303BB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				043466F023FAA079005861EC /* CheckInOutEndpoints.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		04E2879223F93B190033CF4B /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				04E2879323F93B3B0033CF4B /* Endpoints.swift */,
+				04E2879523F93F560033CF4B /* NetworkConstants.swift */,
+				04E2879723F94A590033CF4B /* APIConfiguration.swift */,
+				04E2879923F94F420033CF4B /* APIClient.swift */,
+			);
+			path = NetworkLayer;
 			sourceTree = "<group>";
 		};
 		04E2A71C23E1C527001466F4 /* Network */ = {
@@ -224,6 +248,7 @@
 		04E2DA9E23EC138800F061AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				047A18C323F96AA500B68A68 /* RegestirationEndpoint.swift */,
 				04E2DAA123EC2AAD00F061AC /* RegistrationModel.swift */,
 			);
 			path = Model;
@@ -265,6 +290,8 @@
 		04E8A8C023F01E0D009D346B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				044D2F2B23FA8E0400C2128B /* RequestsEndpoints.swift */,
+				043466EE23FA9B5F005861EC /* ApprovedEndpoints.swift */,
 				0466790E23F02A1E00C4626D /* Data.swift */,
 				0466790F23F02A1E00C4626D /* Employee.swift */,
 				0466790D23F02A1E00C4626D /* RequestsModel.swift */,
@@ -427,15 +454,24 @@
 			files = (
 				048D575F23E065990026F4B0 /* HR_Project.xcdatamodeld in Sources */,
 				048D575923E065990026F4B0 /* LoginController.swift in Sources */,
+				047A18C423F96AA500B68A68 /* RegestirationEndpoint.swift in Sources */,
+				04E2879623F93F560033CF4B /* NetworkConstants.swift in Sources */,
 				04E8A8C223F01E6D009D346B /* TableViewController.swift in Sources */,
+				04E2879823F94A590033CF4B /* APIConfiguration.swift in Sources */,
 				0466791023F02A1E00C4626D /* Requests.swift in Sources */,
 				04E8A8C423F01EBF009D346B /* TableViewCell.swift in Sources */,
 				04E2A71323E17AE7001466F4 /* Network.swift in Sources */,
+				043466F123FAA079005861EC /* CheckInOutEndpoints.swift in Sources */,
 				048D577723E0753F0026F4B0 /* Helper.swift in Sources */,
+				041E5A3623F9672E00335C72 /* LoginEndpoint.swift in Sources */,
 				04EFD43A23E31FA800F82384 /* View2Controller.swift in Sources */,
 				04E2DAA223EC2AAD00F061AC /* RegistrationModel.swift in Sources */,
+				04E2879A23F94F420033CF4B /* APIClient.swift in Sources */,
 				0466791323F02A1E00C4626D /* Employee.swift in Sources */,
+				04E2879423F93B3B0033CF4B /* Endpoints.swift in Sources */,
+				044D2F2C23FA8E0400C2128B /* RequestsEndpoints.swift in Sources */,
 				048D577423E06D590026F4B0 /* API.swift in Sources */,
+				043466EF23FA9B60005861EC /* ApprovedEndpoints.swift in Sources */,
 				0466791223F02A1E00C4626D /* Data.swift in Sources */,
 				04E2A71923E1B049001466F4 /* loginModel.swift in Sources */,
 				04E2DAA023EC1BE000F061AC /* RegistrationViewController.swift in Sources */,

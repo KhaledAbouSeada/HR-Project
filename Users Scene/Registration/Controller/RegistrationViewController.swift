@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class RegistrationViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
 
@@ -181,13 +182,24 @@ class RegistrationViewController: UIViewController,UIPickerViewDataSource,UIPick
             let salary = Int(SalaryTXT.text!)!
 //            let User_Id = Int(UserIDTXT.text!)!
             
-            API.RegistraionEmployee(firstname: "\(FirstNameTXT.text ?? "")", lastname: "\(LastNameTXT.text ?? "")", arabicname: "\(ArabicNameTXT.text ?? "")", email: "\(EmailTXT.text ?? "")", phonenumber: "\(PhoneTXT.text ?? "")", maritalstatus: "\(MaritalTXT.text ?? "")", gender: "\(GenderTXT.text ?? "")", employeetype: "\(EmployeeTypeTXT.text ?? "")", hiringdate: "\(HiringDateTXT.text ?? "")", departmentid: department, cityid: city, countryid: country, salary: salary) { (error:Error?, success:Bool) in
-                
-                if let error = error{
+            
+            
+            APIClient.RegistraionEmployee(firstname: FirstNameTXT.text ?? "", lastname: LastNameTXT.text ?? "", arabicname: ArabicNameTXT.text ?? "", email: EmailTXT.text ?? "", phonenumber: PhoneTXT.text ?? "", maritalstatus: MaritalTXT.text ?? "", gender: GenderTXT.text ?? "", employeetype: EmployeeTypeTXT.text ?? "", hiringdate: HiringDateTXT.text ?? "", departmentid: department, cityid: city, countryid: country, salary: salary) { (response: Result<RegistrationModel,AFError>) in
+                switch response{
+                    
+                case .success(_):
+                    self.Alertaction(message: "Employee Registered Successfully")
+                case .failure(let error):
                     self.Alert(message: error.localizedDescription)
                 }
-                if success == true{
-                    self.Alertaction(message: "Employee Registered Successfully")
+            
+//            API.RegistraionEmployee(firstname: "\(FirstNameTXT.text ?? "")", lastname: "\(LastNameTXT.text ?? "")", arabicname: "\(ArabicNameTXT.text ?? "")", email: "\(EmailTXT.text ?? "")", phonenumber: "\(PhoneTXT.text ?? "")", maritalstatus: "\(MaritalTXT.text ?? "")", gender: "\(GenderTXT.text ?? "")", employeetype: "\(EmployeeTypeTXT.text ?? "")", hiringdate: "\(HiringDateTXT.text ?? "")", departmentid: department, cityid: city, countryid: country, salary: salary) { (error:Error?, success:Bool) in
+//
+//                if let error = error{
+//                    self.Alert(message: error.localizedDescription)
+//                }
+//                if success == true{
+//                    self.Alertaction(message: "Employee Registered Successfully")
                 }
 //                self.performSegue(withIdentifier: "Backtologin", sender: self)
 //                let storyboard = UIStoryboard(name: "RegisterSB", bundle: nil)
@@ -196,5 +208,6 @@ class RegistrationViewController: UIViewController,UIPickerViewDataSource,UIPick
 //                self.navigationController?.popToViewController(tab, animated: true)
             }
         }
-    }
+
+
 }
