@@ -48,7 +48,7 @@ class LoginController: UIViewController {
         APIClient.login(email: email, password: password) { (result: Result<loginModel, AFError>) in
             switch result {
             case .success(let loginData):
-                do{
+    
                     if let errorCode = loginData.code {
                         if errorCode == 5000 {
                             if let mailerror = loginData.errors?.email?[0] {
@@ -76,13 +76,9 @@ class LoginController: UIViewController {
                             }
                         }
                     }
-
-                } catch let error{
-                    print(error)
-                }
                 print(loginData)
             case .failure(let error):
-                print(error)
+                self.Alert(message: ("\(error)"))
             }
         }
         

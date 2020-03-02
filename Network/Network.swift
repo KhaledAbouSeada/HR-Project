@@ -30,7 +30,7 @@ class Network {
             case .requests:return ("\(Network.endPoints.baseUrl)requests")
             case .checkIn:return ("\(Network.endPoints.baseUrl)checkIn")
             case .checkOut:return ("\(Network.endPoints.baseUrl)checkOut")
-            case .approved(let employee_id, let status, let description, let from, let to,  let type , let reply , let id):
+            case .approved(let employee_id, _, _, _, _,  _ , _ , _):
                 return "\(Network.endPoints.baseUrl)requests/\(employee_id)"
             }
         }

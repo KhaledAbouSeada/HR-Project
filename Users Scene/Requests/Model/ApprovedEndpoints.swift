@@ -23,7 +23,7 @@ enum ApprovedEndpoints: APIConfiguration {
     
     var path: String {
         switch self {
-        case .approved(let employee_id , let status ,let description,let from,let to,let type,let reply,let id): return "/\(employee_id)"
+        case .approved(let employee_id , _,_,_,_,_,_,_): return "/\(employee_id)"
         }
     }
     
@@ -35,7 +35,7 @@ enum ApprovedEndpoints: APIConfiguration {
     
     var paramters: Parameters? {
         switch self {
-        case .approved(let employee_id, let status, let description, let from, let to, let type, let reply, let id):return [K.Constanst.employee_id:employee_id , K.Constanst.description:description , K.Constanst.from:from , K.Constanst.to:to , K.Constanst.type:type , K.Constanst.reply:reply , K.Constanst.id:id]
+        case .approved(let employee_id, _, let description, let from, let to, let type, let reply, let id):return [K.Constanst.employee_id:employee_id , K.Constanst.description:description , K.Constanst.from:from , K.Constanst.to:to , K.Constanst.type:type , K.Constanst.reply:reply , K.Constanst.id:id]
         }
     }
     

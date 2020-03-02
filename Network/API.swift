@@ -105,7 +105,7 @@ class API: NSObject {
     
     class func Requestrequests(completion: @escaping (_ error:Error? , _ success:Bool , _ Dataa:[Requests]?)->Void){
         
-        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
+//        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
         
         AF.request(Network.endPoints.requests.url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil)
         
@@ -130,7 +130,7 @@ class API: NSObject {
     class func ApprovedRequests(employee_id:Int,status:String,description:String,from:String,to:String,type:String ,reply:String ,id:Int, completion: @escaping (_ error:Error? , _ success:Bool)->Void){
         
         let parameters: [String: Any] = ["employee_id": employee_id, "status": status, "description": description, "from": from, "to": to, "type": type, "reply": reply, "id": id]
-        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
+//        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
         
 //        print(Network.endPoints.approved(employee_id: employee_id, status: "Approved", description: description, from: from, to: to, type: type, reply: reply, id: id).url)
         
@@ -152,7 +152,7 @@ class API: NSObject {
     class func requestCheckIn(date: String , completion: @escaping (_ error:Error? ,_ success:Bool?)->Void){
         
         let params = ["date": date]
-        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
+//        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
         
         AF.request(Network.endPoints.checkIn.url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil)
             .responseJSON { response in
@@ -170,7 +170,7 @@ class API: NSObject {
     class func requestCheckOut(date: String , completion: @escaping (_ error:Error? ,_ success:Bool?)->Void){
         
         let params = ["date": date]
-        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
+//        let headers = ["Authorization": "Bearer \(Helper.getApiToken() ?? "")"]
         
         AF.request(Network.endPoints.checkOut.url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil)
             .responseJSON { response in

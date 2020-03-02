@@ -34,7 +34,7 @@ enum EndPoints: APIConfiguration {
         case .requests: return "\(K.baseUrl.baseUrl)requests"
         case .checkIn: return "\(K.baseUrl.baseUrl)checkIn"
         case .checkOut: return "\(K.baseUrl.baseUrl)checkOut"
-        case .approved(let employee_id , let status ,let description,let from,let to,let type,let reply,let id): return "\(K.baseUrl.baseUrl)\(employee_id)"
+        case .approved(let employee_id , _, _, _,_,_,_,_): return "\(K.baseUrl.baseUrl)\(employee_id)"
         }
     }
     
@@ -42,7 +42,7 @@ enum EndPoints: APIConfiguration {
         switch self {
         case .login, .registration , .checkOut , .checkIn: return .post
         case .requests: return .get
-        case .approved(let employee_id, let status, let description, let from, let to, let type, let reply, let id):return .put
+        case .approved(_, _, _, _, _, _, _, _):return .put
         }
     }
     
@@ -57,7 +57,7 @@ enum EndPoints: APIConfiguration {
             return[K.Constanst.date:date]
         case .checkOut(let date):
             return[K.Constanst.date:date]
-        case .approved(let employee_id, let status, let description, let from, let to, let type, let reply, let id):return [K.Constanst.employee_id:employee_id , K.Constanst.description:description , K.Constanst.from:from , K.Constanst.to:to , K.Constanst.type:type , K.Constanst.reply:reply , K.Constanst.id:id]
+        case .approved(let employee_id, _, let description, let from, let to, let type, let reply, let id):return [K.Constanst.employee_id:employee_id , K.Constanst.description:description , K.Constanst.from:from , K.Constanst.to:to , K.Constanst.type:type , K.Constanst.reply:reply , K.Constanst.id:id]
         }
     }
     
